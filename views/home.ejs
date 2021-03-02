@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URL shortener</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <style>
         body {
             display: flex;
@@ -13,6 +17,22 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            font-family: 'Ubuntu', sans-serif;
+            background-color: #252525;
+            color: white;
+        }
+
+        input {
+            margin-right: 1rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: row;
+        }
+
+        a {
+            color: white;
         }
     </style>
 </head>
@@ -23,15 +43,25 @@
     </h2>
 
     <form action="/createURL" method="post">
-        <input type="text" name="longUrl">
-        <button type="submit">Short Url</button>
+        <input required class="form-control col" type="text" name="longUrl">
+        <button class="btn btn-primary" type="submit">Short Url</button>
     </form>
     <h3>Shorted URL's:</h3>
-    <% shortUrls.forEach(item => { %>
-    <p><a href="<%= item.longUrl %>"><%= item.longUrl %></a>:
-        <a href="<%= item.shortUrl %>"><%= item.shortUrl %></a>
-    </p>
-    <% }); %>
+    <table class="table" style="width: 500px; margin: 2rem;">
+        <tr>
+            <th scope="col">Long URL</th>
+            <th scope="col">Short URL</th>
+            <th scope="col">views</th>
+        </tr>
+        <% shortUrls.forEach(item => { %>
+        <tr>
+            <td><a href="<%= item.longUrl %>"><%= item.longUrl %></a></td>
+            <td><a href="<%= item.shortUrl %>"><%= item.shortUrl %></a></td>
+            <td><a href="<%= item.views %>"><%= item.views %></a></td>
+        </tr>
+
+        <% }); %>
+    </table>
 </body>
 
 </html>

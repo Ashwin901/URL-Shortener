@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL shortener</title>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>
+        URL Shortener
+    </h2>
+
+    <form action="/createURL" method="post">
+        <input type="text" name="longUrl">
+        <button type="submit">Short Url</button>
+    </form>
+    <h3>Shorted URL's:</h3>
+    <% shortUrls.forEach(item => { %>
+    <p><a href="<%= item.longUrl %>"><%= item.longUrl %></a>:
+        <a href="<%= item.shortUrl %>"><%= item.shortUrl %></a>
+    </p>
+    <% }); %>
+</body>
+
+</html>
